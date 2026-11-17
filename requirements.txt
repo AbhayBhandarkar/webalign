@@ -1,0 +1,7 @@
+openai>=1.0
+PyYAML>=6.0
+numpy>=1.24
+# Only needed for the RAG baseline (bge embeddings) and the NLI baseline (DeBERTa-MNLI):
+sentence-transformers>=2.2
+transformers>=4.40
+torch>=2.1

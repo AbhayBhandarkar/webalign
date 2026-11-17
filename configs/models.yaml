@@ -1,0 +1,45 @@
+# Models used by WebAlign and the baselines.
+# Every backend speaks the OpenAI chat-completions protocol.
+
+backends:
+  local:                    # vLLM text server: vllm serve <model> --port 8000
+    base_url: http://localhost:8000/v1
+    api_key: EMPTY
+  local_vl:                 # vLLM vision server: vllm serve <model> --port 8001
+    base_url: http://localhost:8001/v1
+    api_key: EMPTY
+  api:                      # any hosted OpenAI-compatible endpoint
+    base_url_env: WEBALIGN_API_BASE
+    api_key_env: WEBALIGN_API_KEY
+    token_param: max_completion_tokens
+    min_tokens: 800
+
+# Pipeline roles: WebAlign's text and chart extractors.
+roles:
+  extract_text:
+    backend: local
+    model: Qwen/Qwen2.5-32B-Instruct-AWQ
+  extract_visual:
+    backend: local_vl
+    model: Qwen/Qwen2.5-VL-7B-Instruct
+
+# Agents, referenced by name on the command line (--agents ...).
+# For hosted models, set `model` to the identifier your provider uses.
+agents:
+  - {name: qwen2.5-32b,     backend: local,    model: Qwen/Qwen2.5-32B-Instruct-AWQ}
+  - {name: qwen2.5-72b,     backend: local,    model: Qwen/Qwen2.5-72B-Instruct-AWQ}
+  - {name: phi-3.5-mini,    backend: local,    model: microsoft/Phi-3.5-mini-instruct}
+  - {name: qwen2.5-vl-7b,   backend: local_vl, model: Qwen/Qwen2.5-VL-7B-Instruct}
+  - {name: llama-3.3-70b,   backend: api, model: llama-3.3-70b-instruct}
+  - {name: mistral-large-3, backend: api, model: mistral-large-3}
+  - {name: gemma-4-31b,     backend: api, model: gemma-4-31b-it}
+  - {name: deepseek-v3.2,   backend: api, model: deepseek-v3.2}
+  - {name: deepseek-v4-pro, backend: api, model: deepseek-v4-pro}
+  - {name: kimi-k2.6,       backend: api, model: kimi-k2.6, reasoning: true}
+  - {name: grok-4,          backend: api, model: grok-4}
+  - {name: grok-4.3,        backend: api, model: grok-4.3}
+  - {name: gpt-4o,          backend: api, model: gpt-4o}
+  - {name: gpt-4.1,         backend: api, model: gpt-4.1}
+  - {name: gpt-5.1,         backend: api, model: gpt-5.1}
+  - {name: o3,              backend: api, model: o3, reasoning: true}
+  - {name: gpt-oss-120b,    backend: api, model: gpt-oss-120b, reasoning: true}
