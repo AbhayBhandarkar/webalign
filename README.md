@@ -307,8 +307,14 @@ WebFrag-Ctrl, Qwen2.5-32B, n = 737 (full table: `python -m eval.reproduce_tables
 
 ```bibtex
 @inproceedings{bhandarkar2026webalign,
-  title  = {The Web Is Not a Knowledge Base: Measuring Epistemic Fragmentation in Multimodal Web Search},
-  author = {Bhandarkar, Abhay and Bhandarkar, Jagdish},
-  year   = {2026}
+  title     = {The Web Is Not a Knowledge Base: Measuring Epistemic Fragmentation in Multimodal Web Search},
+  author    = {Bhandarkar, Abhay and Bhandarkar, Jagdish},
+  booktitle = {ACM WebSciX 2026},
+  address   = {Bengaluru, India},
+  year      = {2026}
 }
 ```
+
+## License
+
+Released under the [MIT License](LICENSE).
